@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "username/MoonQuant"
+
+// Values
+pub fn dequantize_int8(Array[Int], Double) -> Array[Double]
+
+pub fn dequantize_int8_asymmetric(Array[Int], Double, Int) -> Array[Double]
+
+pub fn dequantize_int8_per_channel(Array[Int], Array[Double], Int) -> Array[Double]
+
+pub fn find_scale(Array[Double]) -> Double
+
+pub fn max_absolute_error(Array[Double], Array[Double]) -> Double
+
+pub fn mean_absolute_error(Array[Double], Array[Double]) -> Double
+
+pub fn mean_squared_error(Array[Double], Array[Double]) -> Double
+
+pub fn quantize_dequantize(Array[Double]) -> (Array[Double], Double)
+
+pub fn quantize_int8(Array[Double]) -> (Array[Int], Double)
+
+pub fn quantize_int8_asymmetric(Array[Double]) -> (Array[Int], Double, Int)
+
+pub fn quantize_int8_per_channel(Array[Double], Int) -> (Array[Int], Array[Double])
+
+pub fn quantize_int8_with_scale(Array[Double], Double) -> Array[Int]
+
+pub fn root_mean_square_error(Array[Double], Array[Double]) -> Double
+
+pub fn storage_reduction_ratio(Int) -> Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

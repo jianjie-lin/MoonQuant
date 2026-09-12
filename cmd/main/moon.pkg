@@ -1,0 +1,9 @@
+// import {
+//   "username/MoonQuant" @lib,
+// }
+
+pkgtype(kind: "executable")
+
+import {
+  "username/MoonQuant" @lib,
+}
