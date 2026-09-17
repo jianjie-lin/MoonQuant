@@ -84,3 +84,16 @@ test "storage reduction estimate" {
   assert_eq(@MoonQuant.storage_reduction_ratio(100), 8.0)
   assert_eq(@MoonQuant.storage_reduction_ratio(0), 1.0)
 }
+
+///|
+test "quantized dot product" {
+  let left = [1.0, -2.0, 0.5]
+  let right = [2.0, 1.0, -1.0]
+  let (left_quantized, left_scale) = @MoonQuant.quantize_int8(left)
+  let (right_quantized, right_scale) = @MoonQuant.quantize_int8(right)
+  let result = @MoonQuant.quantized_dot_product(
+    left_quantized, left_scale, right_quantized, right_scale,
+  )
+  assert_true(result > -0.55 && result < -0.45)
+  assert_eq(@MoonQuant.quantized_dot_product([], 1.0, [1], 1.0), 0.0)
+}

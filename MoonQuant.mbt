@@ -280,3 +280,24 @@ pub fn storage_reduction_ratio(value_count : Int) -> Double {
     8.0
   }
 }
+
+///|
+/// Calculate the dot product of two symmetric Int8 vectors.
+/// Only the shared prefix is used when the input lengths differ.
+pub fn quantized_dot_product(
+  left : Array[Int],
+  left_scale : Double,
+  right : Array[Int],
+  right_scale : Double,
+) -> Double {
+  let count = if left.length() < right.length() {
+    left.length()
+  } else {
+    right.length()
+  }
+  let mut integer_sum = 0
+  for i = 0; i < count; i = i + 1 {
+    integer_sum = integer_sum + left[i] * right[i]
+  }
+  integer_sum.to_double() * left_scale * right_scale
+}
