@@ -330,3 +330,27 @@ pub fn quantized_cosine_similarity(
     dot / (left_squared.sqrt() * right_squared.sqrt())
   }
 }
+
+///|
+/// Count values that exceed the representable symmetric Int8 range.
+pub fn saturation_count(values : Array[Double], scale : Double) -> Int {
+  let safe_scale = if scale > 0.0 { scale } else { 1.0 }
+  let limit = 127.0 * safe_scale
+  let mut count = 0
+  for value in values {
+    if value > limit || value < -limit {
+      count = count + 1
+    }
+  }
+  count
+}
+
+///|
+/// Return the share of values that exceed the symmetric Int8 range.
+pub fn saturation_ratio(values : Array[Double], scale : Double) -> Double {
+  if values.length() == 0 {
+    0.0
+  } else {
+    saturation_count(values, scale).to_double() / values.length().to_double()
+  }
+}

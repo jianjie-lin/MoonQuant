@@ -32,6 +32,10 @@ pub fn quantized_dot_product(Array[Int], Double, Array[Int], Double) -> Double
 
 pub fn root_mean_square_error(Array[Double], Array[Double]) -> Double
 
+pub fn saturation_count(Array[Double], Double) -> Int
+
+pub fn saturation_ratio(Array[Double], Double) -> Double
+
 pub fn storage_reduction_ratio(Int) -> Double
 
 // Errors

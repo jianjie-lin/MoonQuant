@@ -106,3 +106,12 @@ test "quantized cosine similarity" {
   assert_true(opposite < -0.999)
   assert_eq(@MoonQuant.quantized_cosine_similarity([0, 0], [1, 2]), 0.0)
 }
+
+///|
+test "saturation diagnostics" {
+  let values = [-200.0, -127.0, 0.0, 127.0, 128.0]
+  assert_eq(@MoonQuant.saturation_count(values, 1.0), 2)
+  assert_eq(@MoonQuant.saturation_ratio(values, 1.0), 0.4)
+  assert_eq(@MoonQuant.saturation_count([128.0], 0.0), 1)
+  assert_eq(@MoonQuant.saturation_ratio([], 1.0), 0.0)
+}
