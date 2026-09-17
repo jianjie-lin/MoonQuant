@@ -18,6 +18,8 @@ pub fn mean_squared_error(Array[Double], Array[Double]) -> Double
 
 pub fn quantize_dequantize(Array[Double]) -> (Array[Double], Double)
 
+pub fn quantize_dequantize_per_channel(Array[Double], Int) -> (Array[Double], Array[Double])
+
 pub fn quantize_int8(Array[Double]) -> (Array[Int], Double)
 
 pub fn quantize_int8_asymmetric(Array[Double]) -> (Array[Int], Double, Int)

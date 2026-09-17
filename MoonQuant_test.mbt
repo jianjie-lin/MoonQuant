@@ -80,6 +80,22 @@ test "invalid channel size is safe" {
 }
 
 ///|
+test "per channel round trip handles partial final channel" {
+  let values = [0.1, -1.0, 20.0, -30.0, 0.25]
+  let (reconstructed, scales) = @MoonQuant.quantize_dequantize_per_channel(
+    values, 2,
+  )
+  assert_eq(reconstructed.length(), values.length())
+  assert_eq(scales.length(), 3)
+  assert_true(@MoonQuant.max_absolute_error(values, reconstructed) < 0.12)
+  let (invalid, invalid_scales) = @MoonQuant.quantize_dequantize_per_channel(
+    values, 0,
+  )
+  assert_eq(invalid.length(), 0)
+  assert_eq(invalid_scales.length(), 0)
+}
+
+///|
 test "storage reduction estimate" {
   assert_eq(@MoonQuant.storage_reduction_ratio(100), 8.0)
   assert_eq(@MoonQuant.storage_reduction_ratio(0), 1.0)

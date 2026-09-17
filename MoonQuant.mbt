@@ -250,6 +250,16 @@ pub fn dequantize_int8_per_channel(
 }
 
 ///|
+/// Quantize and reconstruct consecutive channels in one operation.
+pub fn quantize_dequantize_per_channel(
+  values : Array[Double],
+  channel_size : Int,
+) -> (Array[Double], Array[Double]) {
+  let (quantized, scales) = quantize_int8_per_channel(values, channel_size)
+  (dequantize_int8_per_channel(quantized, scales, channel_size), scales)
+}
+
+///|
 /// Mean squared reconstruction error.
 pub fn mean_squared_error(
   original : Array[Double],
