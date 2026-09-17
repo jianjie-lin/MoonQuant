@@ -17,6 +17,7 @@ let (encoded, scale) = @MoonQuant.quantize_int8(values)
 let decoded = @MoonQuant.dequantize_int8(encoded, scale)
 let error = @MoonQuant.mean_absolute_error(values, decoded)
 let worst = @MoonQuant.max_absolute_error(values, decoded)
+let clipped = @MoonQuant.saturation_count(values, scale)
 
 let (affine, affine_scale, zero_point) =
   @MoonQuant.quantize_int8_asymmetric(values)
@@ -35,13 +36,16 @@ input, the scale is `1.0`; this keeps the API safe from division by zero.
 `quantize_int8_with_scale` supports reusing a scale across batches, while
 `quantize_int8_per_channel` computes independent scales for consecutive
 channels. MAE, MSE, maximum error, and RMSE helpers are available for
-evaluating reconstruction quality.
+evaluating reconstruction quality. Saturation diagnostics help identify an
+undersized scale, and quantized dot product and cosine similarity support
+basic vector evaluation without reconstructing every value.
 
 ## Scope and roadmap
 
 The current release provides symmetric and affine Int8 quantization,
-per-channel scales, reconstruction metrics, and safe handling of degenerate
-inputs. It does not yet load ONNX/Safetensors files or run complete LLMs.
+per-channel scales and round trips, reconstruction metrics, quantized vector
+operations, and safe handling of degenerate inputs. It does not yet load
+ONNX/Safetensors files or run complete LLMs.
 
 Planned extensions are quantized matrix operations, a compact weight format,
 and a small end-to-end inference example. Each extension will be accompanied
