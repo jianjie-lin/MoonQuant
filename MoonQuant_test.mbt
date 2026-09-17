@@ -97,3 +97,12 @@ test "quantized dot product" {
   assert_true(result > -0.55 && result < -0.45)
   assert_eq(@MoonQuant.quantized_dot_product([], 1.0, [1], 1.0), 0.0)
 }
+
+///|
+test "quantized cosine similarity" {
+  let same = @MoonQuant.quantized_cosine_similarity([2, -4, 1], [4, -8, 2])
+  assert_true(same > 0.999)
+  let opposite = @MoonQuant.quantized_cosine_similarity([1, 2], [-1, -2])
+  assert_true(opposite < -0.999)
+  assert_eq(@MoonQuant.quantized_cosine_similarity([0, 0], [1, 2]), 0.0)
+}

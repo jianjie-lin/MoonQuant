@@ -26,6 +26,8 @@ pub fn quantize_int8_per_channel(Array[Double], Int) -> (Array[Int], Array[Doubl
 
 pub fn quantize_int8_with_scale(Array[Double], Double) -> Array[Int]
 
+pub fn quantized_cosine_similarity(Array[Int], Array[Int]) -> Double
+
 pub fn quantized_dot_product(Array[Int], Double, Array[Int], Double) -> Double
 
 pub fn root_mean_square_error(Array[Double], Array[Double]) -> Double

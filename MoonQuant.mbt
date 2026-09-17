@@ -301,3 +301,32 @@ pub fn quantized_dot_product(
   }
   integer_sum.to_double() * left_scale * right_scale
 }
+
+///|
+/// Calculate cosine similarity directly from two Int8 vectors.
+/// Returns zero when either vector has no magnitude.
+pub fn quantized_cosine_similarity(
+  left : Array[Int],
+  right : Array[Int],
+) -> Double {
+  let count = if left.length() < right.length() {
+    left.length()
+  } else {
+    right.length()
+  }
+  let mut dot = 0.0
+  let mut left_squared = 0.0
+  let mut right_squared = 0.0
+  for i = 0; i < count; i = i + 1 {
+    let left_value = left[i].to_double()
+    let right_value = right[i].to_double()
+    dot = dot + left_value * right_value
+    left_squared = left_squared + left_value * left_value
+    right_squared = right_squared + right_value * right_value
+  }
+  if left_squared == 0.0 || right_squared == 0.0 {
+    0.0
+  } else {
+    dot / (left_squared.sqrt() * right_squared.sqrt())
+  }
+}
