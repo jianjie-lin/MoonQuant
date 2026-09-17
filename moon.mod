@@ -9,18 +9,18 @@
 //   "moonbitlang/x@0.4.6",
 // }
 
-name = "username/MoonQuant"
+name = "jianjie-lin/MoonQuant"
 
 version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = ""
+repository = "https://github.com/jianjie-lin/MoonQuant"
 
 license = "Apache-2.0"
 
-keywords = [ ]
+keywords = [ "quantization", "int8", "machine-learning", "wasm" ]
 
 preferred_target = "wasm"
 
-description = ""
+description = "A dependency-free Int8 tensor quantization library for MoonBit"

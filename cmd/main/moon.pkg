@@ -5,5 +5,5 @@
 pkgtype(kind: "executable")
 
 import {
-  "username/MoonQuant" @lib,
+  "jianjie-lin/MoonQuant" @lib,
 }

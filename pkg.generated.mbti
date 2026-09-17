@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "username/MoonQuant"
+package "jianjie-lin/MoonQuant"
 
 // Values
 pub fn dequantize_int8(Array[Int], Double) -> Array[Double]
